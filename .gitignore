@@ -1,0 +1,16 @@
+# Binaries
+sh
+
+# Objects
+*.o
+
+# Metadata
+TRANS.TBL
+
+# Other
+*.old
+Makefile.linux
+redir.tmp
+mem_log.txt
+stress_test.sh
+valgrind_*.log
