@@ -26,9 +26,9 @@ typedef short BOOL;
  * into an Rvalue so two cheats
  * are necessary, one for each context.
  */
-typedef union { uintptr_t _cheat; } cheat;
-#define Lcheat(a)	(((cheat *)&(a))->_cheat)
-#define Rcheat(a)	((uintptr_t)(a))
+typedef union { long _cheat; } cheat;
+#define Lcheat(a)	((a)._cheat)
+#define Rcheat(a)	((long)(a))
 
 
 /* address puns for storage allocation */

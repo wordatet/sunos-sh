@@ -151,7 +151,7 @@ extern void				setvars();
 extern long				time();
 
 #define 	attrib(n,f)		(n->namflg |= f)
-#define 	round(a,b)		(((uintptr_t)(((char *)(a)+(uintptr_t)(b))-1))&~((uintptr_t)(b)-1))
+#define 	round(a,b)		(((long)((long)(a)+(long)(b)-1))&~((long)(b)-1))
 #define 	closepipe(x)	(close(x[INPIPE]), close(x[OTPIPE]))
 #define 	eq(a,b)			(cf(a,b)==0)
 #define 	max(a,b)		((a)>(b)?(a):(b))
