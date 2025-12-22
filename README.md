@@ -7,6 +7,9 @@ This repository contains a functional port of the classic **SunOS 4.1.4 Bourne S
 ## Overview
 The goal of this project was to preserve a piece of computing history by making the original BSD-lineage Bourne shell functional on contemporary hardware and kernels. The SunOS 4.1.4 shell represents a "cleaner" branch of the Bourne family tree, predating the heavy internationalization and POSIX layers that made later System V releases significantly more complex.
 
+> [!NOTE]
+> As an authentic Bourne shell, this binary does **not** support POSIX features like arithmetic expansion `$((...))` or command substitution `$(...)`. It uses classic backticks \`...\` and external tools like `expr` for these tasks.
+
 ## Porting Process
 This port was developed by **Mario (@wordatet)** using the [**Antigravity IDE**](https://antigravity.google). Me with the help of Gemini 3 Flash, we analyzed the 30-year-old C source code and implemented several critical modernizations:
 
