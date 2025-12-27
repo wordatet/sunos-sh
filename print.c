@@ -58,7 +58,9 @@ char	c;
 		write(output, &c, 1);
 }
 
+#ifndef HZ
 #define	HZ	60
+#endif
 
 prt(t)
 long	t;

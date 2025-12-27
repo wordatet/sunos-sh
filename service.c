@@ -457,6 +457,7 @@ int	i, bckg;
 
 BOOL		nosubst;
 
+void
 trim(at)
 char	*at;
 {
