@@ -23,7 +23,7 @@ int *buf, bufsiz;
 		o = creat(mktemp("profXXXXXX"), 0666);
 		write(o, sbuf, ssiz<<1);
 		close(o);
-		return;
+		return(0);
 	}
 	ssiz = bufsiz;
 	buf[0] = lowpc;
@@ -33,7 +33,7 @@ int *buf, bufsiz;
 	buf += 3*(cntsiz+1);
 	bufsiz -= 3*(cntsiz+1);
 	if (bufsiz<=0)
-		return;
+		return(0);
 	o = ((highpc - lowpc)>>1) & 077777;
 	if(bufsiz < o)
 		o = ((long)bufsiz<<15) / o;

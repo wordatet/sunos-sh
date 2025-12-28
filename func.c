@@ -32,7 +32,7 @@ freetree(t)
 		if (t->tretyp & CNTMSK)
 		{
 			t->tretyp--;
-			return;
+			return(0);
 		}
 
 		type = t->tretyp & COMMSK;

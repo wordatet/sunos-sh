@@ -248,7 +248,7 @@ BOOL	prof;
 	if (setjmp(errshell) && prof)
 	{
 		close(input);
-		return;
+		return(0);
 	}
 	/*
 	 * error return here
@@ -296,7 +296,7 @@ BOOL	prof;
 		trapnote = 0;
 		peekc = readc();
 		if (eof)
-			return;
+			return(0);
 
 #ifdef TIME_OUT
 		alarm(0);

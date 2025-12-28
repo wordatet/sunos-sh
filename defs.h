@@ -1,3 +1,4 @@
+#include "compat.h"
 /*	@(#)defs.h 1.1 94/10/31 SMI; from S5R3.1 1.14	*/
 
 /*	Copyright (c) 1984 AT&T	*/

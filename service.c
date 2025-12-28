@@ -533,7 +533,7 @@ char	*from[], *to[];
 	register int	i, j;
 
 	if ((n = to - from) <= 1)
-		return;
+		return(0);
 	for (j = 1; j <= n; j *= 2)
 		;
 	for (m = 2 * j - 1; m /= 2; )

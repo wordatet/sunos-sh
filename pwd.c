@@ -73,7 +73,7 @@ cwd(dir)
 
 	if(*dir==DOT && *(dir+1)=='\0')
 	{
-		return;
+		return(0);
 	}
 
 	if(*dir==SLASH)
@@ -84,7 +84,7 @@ cwd(dir)
 	 	if (pcwd >= &cwdname[MAXPATHLEN])
 		{
 			didpwd=FALSE;
-			return;
+			return(0);
 		}
 		*pcwd++ = *dir++;
 		didpwd = TRUE;
@@ -94,7 +94,7 @@ cwd(dir)
 		/* Relative path */
 
 		if (didpwd == FALSE) 
-			return;
+			return(0);
 			
 		pcwd = cwdname + length(cwdname) - 1;
 		if(pcwd != cwdname+1)
@@ -116,12 +116,12 @@ cwd(dir)
 			 * defer to cwdprint().
 			 */
 			didpwd=FALSE;
-			return;
+			return(0);
 		}
 	 	if (pcwd >= &cwdname[MAXPATHLEN])
 		{
 			didpwd=FALSE;
-			return;
+			return(0);
 		}
 		*pcwd++ = *dir++;
 		while((*dir) && (*dir != SLASH))
@@ -129,7 +129,7 @@ cwd(dir)
 	 		if (pcwd >= &cwdname[MAXPATHLEN])
 			{
 				didpwd=FALSE;
-				return;
+				return(0);
 			}
 			*pcwd++ = *dir++;
 		} 
@@ -138,7 +138,7 @@ cwd(dir)
 	 		if (pcwd >= &cwdname[MAXPATHLEN])
 			{
 			didpwd=FALSE;
-			return;
+			return(0);
 			}
 			*pcwd++ = *dir++;
 		}
@@ -146,7 +146,7 @@ cwd(dir)
 	if (pcwd >= &cwdname[MAXPATHLEN])
 	{
 		didpwd=FALSE;
-		return;
+		return(0);
 	}
 	*pcwd = '\0';
 
@@ -157,7 +157,7 @@ cwd(dir)
 
 		*pcwd = '\0';
 	}
-	return;
+	return(0);
 }
 
 /*
@@ -171,7 +171,7 @@ cwdprint()
 
 	prs_buff(cwdname);
 	prc_buff(NL);
-	return;
+	return(0);
 }
 
 /*
@@ -204,7 +204,7 @@ rmslash(string)
 
 		*pstring = '\0';
 	}
-	return;
+	return(0);
 }
 
 #include <unistd.h>

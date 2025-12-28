@@ -214,7 +214,7 @@ set_dotpath()
 			else
 			{
 				multrel = 1;
-				return;
+				return(0);
 			}
 		}
 	
@@ -237,7 +237,7 @@ hash_func(name)
 	{
 
 		if (h->data & (BUILTIN | FUNCTION))
-			return;
+			return(0);
 		else
 			h->data = FUNCTION;
 	}
@@ -317,7 +317,7 @@ what_is_path(name)
 		{
 			case BUILTIN:
 				prs_buff(" is a shell builtin\n");
-				return;
+				return(0);
 	
 			case FUNCTION:
 			{
@@ -328,7 +328,7 @@ what_is_path(name)
 				prs_buff("(){\n");
 				prf(n->namenv);
 				prs_buff("\n}\n");
-				return;
+				return(0);
 			}
 	
 			case REL_COMMAND:
@@ -341,7 +341,7 @@ what_is_path(name)
 					if (hashtype(hash) == NOTFOUND)
 					{
 						prs_buff(" not found\n");
-						return;
+						return(0);
 					}
 					else
 						hashval = hashdata(hash);
@@ -352,14 +352,14 @@ what_is_path(name)
 				prs_buff(" is hashed (");
 				pr_path(name, hashval);
 				prs_buff(")\n");
-				return;
+				return(0);
 		}
 	}
 
 	if (syslook(name, commands, no_commands))
 	{
 		prs_buff(" is a shell builtin\n");
-		return;
+		return(0);
 	}
 
 	if ((cnt = findpath(name, 0)) > 0)
