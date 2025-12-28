@@ -17,16 +17,16 @@ static	char sccsid[] = "@(#)cmd.c 1.1 94/10/31 SMI"; /* from S5R3.1 1.12 */
 #include "ctype.h"
 #include	"sym.h"
 
-static struct ionod *	inout();
+static struct ionod *	inout(struct ionod *);
 static int	chkword();
-static int	chksym();
-static struct trenod *	term();
-static struct trenod *	makelist();
-static struct trenod *	list();
-static struct regnod *	syncase();
-static struct trenod *	item();
+static int	chksym(int);
+static struct trenod *	term(int);
+static struct trenod *	makelist(int, struct trenod *, struct trenod *);
+static struct trenod *	list(int);
+static struct regnod *	syncase(int);
+static struct trenod *	item(int);
 static int	skipnl();
-static int	prsym();
+static int	prsym(int);
 static int	synbad();
 
 
@@ -339,7 +339,7 @@ item(flag)
 			p = (struct parnod *)getstor(sizeof(struct parnod));
 			p->partre = cmd(')', NLFLG);
 			p->partyp = TPAR;
-			r = makefork(0, p);
+			r = makefork(0, (struct trenod *)p);
 			break;
 		}
 

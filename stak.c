@@ -53,12 +53,12 @@ locstak()
 growstak(newtop)
 char	*newtop;
 {
-	register unsigned	incr;
+	register long	incr;
 
-	incr = (unsigned)round(newtop - brkend + 1, BYTESPERWORD);
+	incr = (long)round(newtop - brkend + 1, BYTESPERWORD);
 	if (brkincr > incr)
-		incr = brkincr;
-	if (setbrk(incr) == -1)
+		incr = (long)brkincr;
+	if (setbrk(incr) == (char *)-1)
 		error(nospace);
 }
 
@@ -94,13 +94,13 @@ register char	*x;
 		stakbsy = stakbsy->word;
 	}
 	staktop = stakbot = max((char *)(x), (char *)(stakbas));
-	rmtemp(x);
+	rmtemp((void *)x);
 }
 
 stakchk()
 {
 	if ((brkend - stakbas) > BRKINCR + BRKINCR)
-		setbrk(-BRKINCR);
+		setbrk(-(long)BRKINCR);
 }
 
 char *

@@ -18,7 +18,7 @@ static	char sccsid[] = "@(#)setbrk.c 1.1 94/10/31 SMI"; /* from S5R3.1 1.8 */
 
 
 char *
-setbrk(unsigned int incr)
+setbrk(long incr)
 {
 
 	register char *a = sh_sbrk(incr);

@@ -315,6 +315,7 @@ chkpr()
 		prs(ps2nod.namval);
 }
 
+void
 settmp()
 {
 	itos(getpid());

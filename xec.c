@@ -105,7 +105,7 @@ int	*pf1, *pf2;
 				exitval = 0;
 
 				gchain = 0;
-				argn = getarg(t);
+				argn = getarg((struct comnod *)t);
 				com = scan(argn);
 				a1 = com[1];
 				gchain = schain;
@@ -162,7 +162,7 @@ int	*pf1, *pf2;
 								if ((f = pathopen(getpath(a1), a1)) < 0)	
 									failed(a1, notfound);	
 								else	
-									execexp(0, f);	
+									execexp(0, (void *)(long)f);	
 							}	
 							break;	
 				
@@ -620,7 +620,7 @@ int	*pf1, *pf2;
 						int olddolc = dolc;
 						n = findnam(com[0]);
 					/* save current positional parameters */
-						olddolh = (struct dolnod *)savargs(funcnt);
+						olddolh = savargs(funcnt);
 						funcnt++;
 						index = initio(io, 1);
 						setargs(com);
@@ -843,7 +843,7 @@ int	*pf1, *pf2;
 
 				loopcnt--;
 				if(argsav)
-					argfor = (struct dolnod *)freeargs(argsav);
+					argfor = freeargs(argsav);
 			}
 			break;
 
@@ -913,9 +913,10 @@ int	*pf1, *pf2;
 	return(exitval);
 }
 
+void
 execexp(s, f)
 char	*s;
-int	f;
+void	*f;
 {
 	struct fileblk	fb;
 
@@ -925,8 +926,8 @@ int	f;
 		estabf(s);
 		fb.feval = (char **)(f);
 	}
-	else if (f >= 0)
-		initf(f);
+	else if ((long)f >= 0)
+		initf((int)(long)f);
 	execute(cmd(NL, NLFLG | MTFLG), 0, (int)(flags & errflg), (int *)0, (int *)0);
 	pop();
 }

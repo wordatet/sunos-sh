@@ -98,7 +98,7 @@ addblok(reqd)
 	 */
 	if ((char *)&bloktop->word >= brkend)
 	{
-		if (setbrk((unsigned)((char *)
+		if (setbrk((long)((char *)
 		    (&bloktop->word) - brkend + sizeof (struct blk))) ==
 		    (char *)-1)
 			error(nospace);
@@ -106,7 +106,7 @@ addblok(reqd)
 	bloktop = bloktop->word = (struct blk *)(Rcheat(bloktop) + reqd);
 	if ((char *)&bloktop->word >= brkend)
 	{
-		if (setbrk((unsigned)((char *)
+		if (setbrk((long)((char *)
 		    (&bloktop->word) - brkend + sizeof (struct blk))) ==
 		    (char *)-1)
 			error(nospace);
@@ -130,6 +130,7 @@ addblok(reqd)
 	}
 }
 
+void
 sh_free(ap)
 	void *ap;
 {

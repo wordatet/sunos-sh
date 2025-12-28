@@ -119,6 +119,7 @@ syslook(w, syswds, n)
 	return(0);
 }
 
+void
 setlist(arg, xp)
 register struct argnod *arg;
 int	xp;
@@ -143,6 +144,7 @@ int	xp;
 }
 
 
+void
 setname(argi, xp)	/* does parameter assignments */
 char	*argi;
 int	xp;
@@ -193,6 +195,7 @@ char	*v;
 		assign(n, v);
 }
 
+void
 assign(n, v)
 struct namnod *n;
 char	*v;
@@ -348,6 +351,7 @@ char	**names;
 	return(rc);
 }
 
+void
 assnum(p, i)
 char	**p;
 int	i;
@@ -427,6 +431,7 @@ char	*nam;
 }
 
 static int (*namfn)();
+void
 namscan(fn)
 	int	(*fn)();
 {
@@ -530,6 +535,7 @@ register struct namnod *n;
 	}
 }
 
+void
 setup_env()
 {
 	register char **e = environ;
@@ -545,7 +551,13 @@ static
 countnam(n)
 struct namnod *n;
 {
-	if (n->namval)
+	register int flg = n->namflg;
+	if (((flg & N_ENVCHG) && (flg & N_EXPORT)) || (flg & N_FUNCTN))
+	{
+		if (n->namval)
+			namec++;
+	}
+	else if (n->namenv)
 		namec++;
 }
 
@@ -615,6 +627,7 @@ findnam(nam)
 }
 
 
+void
 unset_name(name)
 	register char 	*name;
 {

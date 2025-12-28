@@ -180,7 +180,8 @@ unsigned char skipc()
 	return(c);
 }
 
-unsigned char nextc()
+unsigned char
+nextc()
 {
 	register unsigned char	c, d;
 
@@ -197,7 +198,8 @@ retry:
 	return(d);
 }
 
-unsigned char readc()
+unsigned char
+readc()
 {
 	unsigned register char	c;
 	register int	len;

@@ -118,8 +118,9 @@ char *idf;
  * then closed.  If f2 is descriptor 0, modify the global ioset variable
  * accordingly.
  */
+void
 renamefd(f1, f2)
-register int	f1, f2;
+	register int	f1, f2;
 {
 	register int	fs;
 
@@ -318,6 +319,7 @@ savefd(fd)
 }
 
 
+void
 restore(last)
 	register int	last;
 {

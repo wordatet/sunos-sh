@@ -31,8 +31,9 @@ scerrmsg()
 	return(strerror(errno));
 }
 
+void
 failed(s1, s2)
-char	*s1, *s2;
+	char	*s1, *s2;
 {
 	prp();
 	prs_cntl(s1);
@@ -45,14 +46,16 @@ char	*s1, *s2;
 	exitsh(ERROR);
 }
 
+void
 error(s)
-char	*s;
+	char	*s;
 {
 	failed(s, NIL);
 }
 
+void
 exitsh(xno)
-int	xno;
+	int	xno;
 {
 	/*
 	 * Arrive here from `FATAL' errors
@@ -99,10 +102,11 @@ done()
 	exit(exitval);
 }
 
+void
 rmtemp(base)
-struct ionod	*base;
+	void	*base;
 {
-	while (iotemp > base)
+	while (iotemp > (struct ionod *)base)
 	{
 		unlink(iotemp->ioname);
 		sh_free(iotemp->iolink);

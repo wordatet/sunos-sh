@@ -124,6 +124,7 @@ register int	sig;
 	}
 }
 
+void
 stdsigs()
 {
 	setsig(SIGHUP);
@@ -143,6 +144,7 @@ stdsigs()
 	setsig(SIGUSR2);
 }
 
+int
 ignsig(n)
 {
 	register int	i = n;
@@ -160,6 +162,7 @@ ignsig(n)
 	return (osa.sa_handler == SIG_IGN);
 }
 
+void
 getsig(n)
 {
 	register int	i = n;
@@ -175,7 +178,9 @@ getsig(n)
 }
 
 
+void
 setsig(n)
+	int n;
 {
 	register int	i = n;
 
@@ -189,6 +194,7 @@ setsig(n)
 	}
 }
 
+void
 oldsigs()
 {
 	register int	i;
@@ -205,6 +211,7 @@ oldsigs()
 	trapnote = 0;
 }
 
+void
 clrsig(i)
 int	i;
 {
@@ -220,6 +227,7 @@ int	i;
 /*
  * check for traps
  */
+void
 chktrap()
 {
 	register int	i = MAXTRAP;

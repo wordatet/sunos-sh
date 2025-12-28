@@ -176,6 +176,7 @@ options(argc,argv)
 /*
  * sets up positional parameters
  */
+void
 setargs(argi)
 	char	*argi[];
 {
@@ -288,6 +289,7 @@ clean_args(blk)
 	return(argr);
 }
 
+void
 clearup()
 {
 	/*

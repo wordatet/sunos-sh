@@ -28,6 +28,7 @@ extern short topfd;
 /*
  * service routines for `execute'
  */
+int
 initio(iop, save)
 	struct ionod	*iop;
 	int		save;
@@ -214,7 +215,8 @@ static char	**xecenv;
 
 static char	*execs();
 
-int	execa(at, pos)
+void
+execa(at, pos)
 	char	*at[];
 	short pos;
 {
@@ -348,6 +350,7 @@ int	pcsid;
 	}
 }
 
+void
 await(i, bckg)
 int	i, bckg;
 {
@@ -563,6 +566,7 @@ char	*from[], *to[];
 /*
  * Argument list generation
  */
+int
 getarg(ac)
 struct comnod	*ac;
 {

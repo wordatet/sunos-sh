@@ -177,7 +177,7 @@ retry:
 					c = '1';
 				}
 				c -= '0';
-				v = ((c == 0) ? cmdadr : (c <= dolc) ? dolv[c] : (char *)(dolg = 0));
+				v = ((c == 0) ? cmdadr : (c <= dolc) ? dolv[c] : (dolg = 0, (char *)0));
 			}
 			else if (c == '$')
 				v = pidadr;

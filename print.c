@@ -42,8 +42,9 @@ prp()
 	}
 }
 
+void
 prs(as)
-char	*as;
+	char	*as;
 {
 	register char	*s;
 
@@ -51,11 +52,13 @@ char	*as;
 		write(output, s, length(s) - 1);
 }
 
+void
 prc(c)
-char	c;
+	int	c;
 {
-	if (c)
-		write(output, &c, 1);
+	char ch = (char)c;
+	if (ch)
+		write(output, &ch, 1);
 }
 
 #ifndef HZ
@@ -85,6 +88,7 @@ long	t;
 	prc_buff('s');
 }
 
+void
 prn(n)
 	int	n;
 {
@@ -93,7 +97,9 @@ prn(n)
 	prs(numbuf);
 }
 
+void
 itos(n)
+	int n;
 {
 	register char *abuf;
 	register unsigned a, i;
@@ -113,8 +119,9 @@ itos(n)
 	*abuf++ = 0;
 }
 
+int
 stoi(icp)
-char	*icp;
+	char	*icp;
 {
 	register char	*cp = icp;
 	register int	r = 0;
@@ -194,6 +201,7 @@ prs_buff(s)
 }
 
 
+void
 clear_buff()
 {
 	pr_idx = 0;

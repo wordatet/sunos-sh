@@ -112,41 +112,120 @@ extern int 		errno;
 extern int		optind;
 extern char 		*optarg;
 
-/* result type declarations */
-
-extern char				*sh_alloc(unsigned int);
-extern char				*sh_alloc(unsigned int);
-extern int				sh_free();
-extern char				*make();
-extern char				*movstr();
-extern char				*movstrn();
-extern int				execute();
-extern struct trenod	*cmd();
-extern struct trenod	*makefork();
-extern struct namnod	*lookup();
-extern struct namnod	*findnam();
-extern struct dolnod	*useargs();
-extern float			expr();
-extern char				*catpath();
-extern char				*getpath();
-extern char				*nextpath();
-extern char				**scan();
-extern char				*mactrim();
-extern char				*macro();
-extern int				exname();
-extern int				printnam();
-extern int				printro();
-extern int				printexp();
+extern unsigned char				skipc();
 extern unsigned char				readc();
 extern unsigned char				nextc();
-extern char				*scerrmsg();
-extern void				trim();
-extern unsigned char				skipc();
-extern char				**sh_setenv();
-extern int				addblok();
+extern int							word();
+extern char							*scerrmsg();
+extern struct trenod				*cmd(int, int);
 
-extern int				execute(struct trenod *t, int exec_link, int errorflg, int *pf1, int *pf2);
+/* cmd.c */
+extern struct trenod	*cmd(int, int);
+extern struct trenod	*makefork(int, struct trenod *);
+/* blok.c / sh_alloc.c */
+extern char				*sh_alloc(unsigned int);
+extern void				sh_free(void *);
+extern char				*make(char *);
+extern int				addblok();
+extern char				*setbrk(long);
+
+/* args.c */
+extern struct dolnod	*savargs(int);
+extern struct dolnod	*freeargs(struct dolnod *);
+extern struct dolnod	*useargs();
+extern int				options(int, char **);
+extern void				setargs(char **);
+extern void				clearup();
+
+/* name.c */
+extern struct namnod	*lookup(char *);
+extern struct namnod	*findnam(char *);
+extern int				printnam(struct namnod *);
+extern int				printro(struct namnod *);
+extern int				printexp(struct namnod *);
+extern void				assign(struct namnod *, char *);
+extern void				assnum(char **, int);
+extern void				namscan(int (*)(struct namnod *));
+extern void				setlist(struct argnod *, int);
+extern void				setup_env();
+extern void				setname(char *, int);
+extern void				unset_name(char *);
+extern char				**sh_setenv();
+
+/* xec.c */
+extern int				execute(struct trenod *, int, int, int *, int *);
+extern void				execexp(char *, void *);
+extern void				execa(char **, int);
+
+/* service.c */
+extern char				*catpath(char *, char *);
+extern char				*getpath(char *);
+extern char				*nextpath(char *);
+extern char				**scan(int);
+extern char				*mactrim(char *);
+extern char				*macro(char *);
+extern int				getarg(struct comnod *);
+extern int				pathopen(char *, char *);
+
+/* error.c */
+extern void				failed(char *, char *);
+extern void				error(char *);
+extern void				exitsh(int);
 extern void				done();
+
+/* io.c */
+extern int				initio(struct ionod *, int);
+extern void				pathopen_init();
+extern int				chkopen(char *);
+extern void				renamefd(int, int);
+extern void				restore(int);
+extern int				pop();
+extern int				poptemp();
+extern void				rmtemp(void *);
+
+/* print.c */
+extern void				prs(char *);
+extern void				prc(int);
+extern void				prn(int);
+extern void				itoss(int);
+extern int				stoi(char *);
+extern void				prs_buff(char *);
+extern void				prc_buff(int);
+extern void				prn_buff(int);
+extern void				flushb();
+
+/* string.c */
+extern int				cf(char *, char *);
+extern int				any(int, char *);
+extern int				length(char *);
+extern char				*movstr(char *, char *);
+extern char				*movstrn(char *, char *, int);
+
+/* fault.c */
+extern void				stdsigs();
+extern void				oldsigs();
+extern void				clrsig(int);
+extern int				ignsig(int);
+extern void				setsig(int);
+extern void				getsig(int);
+extern void				chktrap();
+
+/* main.c */
+extern void				settmp();
+
+/* macro.c */
+extern char				*macro(char *);
+
+/* test.c */
+extern int				test(int, char **);
+
+/* echo.c */
+extern int				echo(int, char **);
+
+/* hash.c / hashserv.c */
+extern void				zaphash();
+extern void				hashpr();
+extern short				hash_cmd(char *);
 extern void				setvars();
 extern long				time();
 

@@ -520,7 +520,7 @@ pr_path(name, count)
 	path = getpath(name);
 
 	while (--count && path)
-		path = nextpath(path, name);
+		path = nextpath(path);
 
 	catpath(path, name);
 	prs_buff(curstak());
